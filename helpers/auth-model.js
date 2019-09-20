@@ -2,7 +2,7 @@ const db = require('../database/dbConfig')
 
 module.exports = {
     addUser,
-    // findUser
+    findUser
 }
 
 function addUser(user){
@@ -11,6 +11,6 @@ function addUser(user){
             .then(ids => ({id: ids[0]}))
 }
 
-// function findUser(){
-
-// }
+function findUser(filter){
+    return db('users').where(filter)
+}
