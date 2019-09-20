@@ -2,7 +2,8 @@ const db = require('../database/dbConfig')
 
 module.exports = {
     addUser,
-    findUser
+    findUser,
+    getUser
 }
 
 function addUser(user){
@@ -13,4 +14,8 @@ function addUser(user){
 
 function findUser(filter){
     return db('users').where(filter)
+}
+
+function getUser(){
+    return db('users')
 }

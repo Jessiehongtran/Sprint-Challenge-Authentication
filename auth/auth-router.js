@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const db = require('../helpers/auth-model')
 const jwt = require('jsonwebtoken')
 const secrets = require('../secrets/secret')
+const authenticate = require('./authenticate-middleware')
 
 router.post('/register', (req, res) => {
   // implement registration
@@ -51,5 +52,15 @@ function generateToken(user){
   };
   return jwt.sign(payload, secrets.jwtSecret, options)
 }
+
+router.get('/users', authenticate, (req,res)=> {
+  db.getUser()
+    .then (users => {
+      res.status(200).json(users)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
 
 module.exports = router;
