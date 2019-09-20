@@ -3,12 +3,12 @@ const request = require('supertest');
 const server = require('../api/server')
 
 describe('server.js', ()=> {
-    describe('GET /', ()=> {
+    describe('GET /api/jokes', ()=> {
         it('should return 200 OK', ()=> {
             return request(server)
-            .get('/api/auth/users')
+            .get('/api/jokes')
             .then(res => {
-                expect(res.status).toBe(200)
+                expect(res.type).toMatch(/json/i)
             })
         })
     })
