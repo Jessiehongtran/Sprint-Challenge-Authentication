@@ -47,10 +47,11 @@ function generateToken(user){
   const payload = {
     username: user.username,
   };
+  const secret = secrets.jwtSecret
   const options = {
     expiresIn: '1d'
   };
-  return jwt.sign(payload, secrets.jwtSecret, options)
+  return jwt.sign(payload, secret, options)
 }
 
 router.get('/users', authenticate, (req,res)=> {
